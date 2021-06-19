@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.songtablesMapper">
+  <resultMap id="rmsongtables" type="songtables">
+    <id column="tablesid" jdbcType="INTEGER" property="tablesid" />
+    <result column="tabname" jdbcType="VARCHAR" property="tabname" />
+    <result column="songername" jdbcType="VARCHAR" property="songername" />
+    <result column="tabtime" jdbcType="VARCHAR" property="tabtime" />
+    <result column="mylove" jdbcType="INTEGER" property="mylove" />
+    <result column="songimg" jdbcType="VARCHAR" property="songimg" />
+    <result column="audit" jdbcType="INTEGER" property="audit" />
+    <result column="listids" jdbcType="VARCHAR" property="listids" />
+  </resultMap>
+  
+</mapper>

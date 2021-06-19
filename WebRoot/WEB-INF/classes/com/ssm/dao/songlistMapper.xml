@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.songlistMapper">
+  <resultMap id="rmsonglist" type="songlist">
+    <id column="listid" jdbcType="INTEGER" property="listid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="slistname" jdbcType="VARCHAR" property="slistname" />
+    <result column="sjurisdiction" jdbcType="INTEGER" property="sjurisdiction" />
+    <result column="sctime" jdbcType="DATE" property="sctime" />
+    <result column="sdescribe" jdbcType="VARCHAR" property="sdescribe" />
+  </resultMap>
+ 	<!-- boolean add(songlist s); -->
+ 	<insert id="add" parameterType="songlist">
+ 	insert into songlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="listid != null">
+        listid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="slistname != null">
+        slistname,
+      </if>
+      <if test="sjurisdiction != null">
+        sjurisdiction,
+      </if>
+      <if test="sctime != null">
+        sctime,
+      </if>
+      <if test="sdescribe != null">
+        sdescribe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="listid != null">
+        #{listid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="slistname != null">
+        #{slistname,jdbcType=VARCHAR},
+      </if>
+      <if test="sjurisdiction != null">
+        #{sjurisdiction,jdbcType=INTEGER},
+      </if>
+      <if test="sctime != null">
+        #{sctime,jdbcType=DATE},
+      </if>
+      <if test="sdescribe != null">
+        #{sdescribe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+ 	</insert>
+   <!--  boolean deletebyid(Integer listid); -->
+   <delete id="deletebyid" parameterType="songlist">
+   delete from songlist
+    where listid = #{listid,jdbcType=INTEGER}
+   </delete>
+    <!-- boolean updata(songlist s); -->
+    <update id="updata" parameterType="songlist">
+     update songlist
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="slistname != null">
+        slistname = #{slistname,jdbcType=VARCHAR},
+      </if>
+      <if test="sjurisdiction != null">
+        sjurisdiction = #{sjurisdiction,jdbcType=INTEGER},
+      </if>
+      <if test="sctime != null">
+        sctime = #{sctime,jdbcType=DATE},
+      </if>
+      <if test="sdescribe != null">
+        sdescribe = #{sdescribe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where listid = #{listid,jdbcType=INTEGER}
+    </update>
+    <!-- List<songlist> selectall(); -->
+    <select id="selectall" parameterType="songlist" resultMap="rmsonglist">
+    select * from user
+    </select>
+</mapper>

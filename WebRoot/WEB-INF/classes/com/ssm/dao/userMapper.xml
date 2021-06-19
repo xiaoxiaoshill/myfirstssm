@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.userMapper">
+  <resultMap id="rmuser" type="user">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userpassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="mailbox" jdbcType="VARCHAR" property="mailbox" />
+    <result column="lastpassword" jdbcType="VARCHAR" property="lastpassword" />
+    <result column="times" jdbcType="INTEGER" property="times" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="ctime" jdbcType="DATE" property="ctime" />
+    <result column="ftime" jdbcType="DATE" property="ftime" />
+    <result column="presentation" jdbcType="VARCHAR" property="presentation" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="site" jdbcType="VARCHAR" property="site" />
+  </resultMap>
+  <select id="login" parameterType="user" resultMap="rmuser">
+		select * from user where username=#{username} and userpassword=#{userpassword}
+	</select>
+	<select id="selectAll" parameterType="user" resultMap="rmuser">
+		select * from user
+	</select>
+	<select id="selectByPrimaryKey" parameterType="INTEGER" resultMap="rmuser">
+    select * from user where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="selectbyusername" parameterType="STRING" resultMap="rmuser">
+  	select * from user where username=#{username,jdbcType=VARCHAR}
+  </select>
+	<insert id="register" parameterType="user">
+		insert into user (userId, username, userpassword,mailbox, lastpassword, times, img, ctime, ftime)values 
+		(#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR},
+		 #{mailbox,jdbcType=VARCHAR},#{lastpassword,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR},
+		  #{ctime,jdbcType=DATE}, #{ftime,jdbcType=DATE})
+	</insert>
+	<update id="updatebyid" parameterType="user">
+		update user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        userpassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailbox != null">
+        mailbox = #{mailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="lastpassword != null">
+        lastpassword = #{lastpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null">
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=DATE},
+      </if>
+      <if test="ftime != null">
+        ftime = #{ftime,jdbcType=DATE},
+      </if>
+      <if test="presentation != null">
+        presentation = #{presentation,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null">
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+	</update>
+</mapper>
